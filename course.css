@@ -1,0 +1,342 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 10px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #00796b;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00796b;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    background: linear-gradient(to right, #ffffff, #eef2f3);
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 700px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.hero-content .highlight {
+    color: #00796b;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555555;
+}
+
+.hero-content .cta {
+    display: inline-block;
+    background: #00796b;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out;
+}
+
+.hero-content .cta:hover {
+    background: #005f4b;
+}
+
+/* Course Intro Section */
+.course-intro {
+    text-align: center;
+    margin: 70px 20px;
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.course-intro h2 {
+    font-size: 2.5em;
+    color: #1d1f21;
+    position: relative;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.course-intro h2::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #c27ba0;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.course-intro h2:hover::after {
+    width: 50%;
+}
+
+.course-intro .intro-text {
+    font-size: 1.3em;
+    color: #555;
+    margin-top: 20px;
+    line-height: 1.7;
+    animation: fadeInUp 2.2s ease-in-out;
+}
+
+/* Course Description Section */
+.course-description {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 20px;
+    animation: fadeInLeft 1.5s ease-in-out;
+    gap: 40px;
+}
+
+.course-description .description-text,
+.course-description .description-image {
+    width: 48%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-description .description-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.course-description .description-image img:hover {
+    transform: scale(1.1);
+}
+
+.course-description .description-text h3 {
+    font-size: 2.3em;
+    color: #1d1f21;
+    margin-bottom: 20px;
+    animation: fadeInUp 1.8s ease-in-out;
+}
+
+.course-description .description-text p {
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1.7;
+}
+
+/* Course About Section (Flexbox) */
+.course-about {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 20px;
+    animation: fadeInRight 1.5s ease-in-out;
+    gap: 40px;
+}
+
+.course-about .about-text,
+.course-about .about-image {
+    width: 48%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-about .about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.course-about .about-image img:hover {
+    transform: scale(1.1);
+}
+
+.course-about .about-text h3 {
+    font-size: 2.2em;
+    color: #1d1f21;
+    margin-bottom: 20px;
+    font-weight: 700;
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.course-about .about-text p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.7;
+    animation: fadeInUp 2.2s ease-in-out;
+}
+
+/* Data Structures Section */
+.data-structures {
+    text-align: center;
+    margin: 70px 20px;
+    animation: fadeInUp 2s ease-in-out;
+}
+
+.data-structures h3 {
+    font-size: 2.3em;
+    color: #1d1f21;
+    margin-bottom: 30px;
+    position: relative;
+    font-weight: 700;
+    animation: fadeInUp 1.8s ease-in-out;
+}
+
+.data-structures h3::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #c27ba0;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.data-structures h3:hover::after {
+    width: 50%;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: #f8f8f8;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background-color: #f1f1f1;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.card h4 {
+    font-size: 1.5em;
+    margin: 20px 0;
+    color: #1d1f21;
+}
+
+.card p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #1d1f21;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

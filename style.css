@@ -1,0 +1,198 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 10px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #00796b;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00796b;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    background: linear-gradient(to right, #ffffff, #eef2f3);
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 700px;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.hero-content .highlight {
+    color: #00796b;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555555;
+}
+.hero-content pre {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555555;
+}
+
+.hero-content .cta {
+    display: inline-block;
+    background: #00796b;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out;
+}
+
+.hero-content .cta:hover {
+    background: #005f4b;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #ffffff;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    color: #666666;
+    border-top: 1px solid #dddddd;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Find Me Online Section */
+.find-me-online {
+    text-align: center;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.find-me-online h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-icon span {
+    font-size: 1.1rem;
+}
+
+.social-icon:hover {
+    color: #0e4a72;  /* English blue */
+}
+
+.social-icon:hover img {
+    transform: scale(1.1);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-icon {
+        margin-bottom: 15px;
+    }
+}
+

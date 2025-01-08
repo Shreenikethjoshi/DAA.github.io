@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Project - Design and Analysis of Algorithms</title>
+    <link rel="stylesheet" href="course_project.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course.html">Course</a></li>
+                <li><a href="course-project.html" class="active">Course Project</a></li>
+                <li><a href="course_reflections.html">Course Reflections</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Course Project Section -->
+        <section class="project-overview">
+            <h2>Course Project: Utility Network Management System</h2>
+            <div class="project-intro">
+                <div class="city-map">
+                    <img src="citymap.jpg" alt="City Map of 1500 sq km">
+                </div>
+                <div class="project-details">
+                    <h3>Overview</h3>
+                    <p>
+                        Our course project involved designing a city map covering 1500 sq km and creating a revenue model as the first phase of implementation. In the second phase, we focused on a problem statement related to utility network management, specifically a pipeline management system.
+                    </p>
+                    <p>
+                        As a team, we worked on different functionalities to enhance the system. The key functionalities included:
+                    </p>
+                    <ul>
+                        <li>Implementation of a coordinate system to calculate Euclidean distances for pipeline costs.</li>
+                        <li>Complaint registration functionality using the KMP algorithm and queue data structure.</li>
+                        <li>Shortest path calculation using Dijkstra's algorithm.</li>
+                        <li>Minimum spanning tree (MST) for water flow using Kruskal's algorithm.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Individual Contribution Section -->
+        <section class="individual-contribution">
+            <h3>My Contribution</h3>
+            <div class="contribution-details">
+                <div class="contribution-box">
+                    <h4>1. Pressure Adjustment</h4>
+                    <p>
+                        Each house starts with a default water pressure of 100 units. The <strong>adjustPressure</strong> function adjusts the pressure based on the total cost of all pipelines connected to the house:
+                    </p>
+                    <ul>
+                        <li>If the total pipeline cost exceeds 100 units, the pressure decreases proportionally to the extra cost, divided by 10.</li>
+                        <li>If the cost is less than 100 units, the pressure increases proportionally to the deficit, divided by 20.</li>
+                        <li>The pressure is adjusted to a minimum of 80 units and a maximum of 120 units.</li>
+                    </ul>
+                </div>
+
+                <div class="contribution-box">
+                    <h4>2. Optimal Pump Placement</h4>
+                    <p>
+                        I worked on determining the optimal placement of water pumps in the city to ensure efficient water distribution and minimal costs.Objective: To place a pump in a water pipeline network such that the maximum distance water travels to any house is minimized.
+
+                        Key Components Used
+                        Graph Representation:
+                        
+                        Houses are nodes, pipelines are edges with weights (distances).
+                        Shortest Path Algorithm:
+                        
+                        Algorithms like Floyd-Warshall or Dijkstra's are used to find the shortest paths between all houses.
+                        Eccentricity Calculation:
+                        
+                        For each house (node), calculate the maximum distance to all other houses (its eccentricity).
+                        Minimax Approach:
+                        
+                        Identify the house with the smallest eccentricity as the optimal pump location. This minimizes the farthest distance water must travel.
+                        How It’s Done
+                        Build a graph with houses and pipelines.
+                        Compute the shortest path between every pair of houses.
+                        Determine the maximum distance from each house to all others (eccentricity).
+                        Find the house with the minimum eccentricity, ensuring water reaches all houses efficiently.
+                        This approach ensures fair distribution and cost-efficiency for the water supply.
+                </div>
+                <div class="code-block">
+                    <pre>
+                      <code>
+                // Function to calculate the all-pairs shortest paths using Floyd-Warshall Algorithm
+                <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">double</span>&gt;&gt; <span class="function">floydWarshall</span>(<span class="keyword">const</span> <span class="keyword">vector</span>&lt;<span class="variable">House</span>&gt;&amp; houses) {
+                    <span class="keyword">int</span> n = houses.<span class="function">size</span>();
+                    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">double</span>&gt;&gt; distances(n, <span class="keyword">vector</span>&lt;<span class="keyword">double</span>&gt;(n, <span class="variable">numeric_limits</span>&lt;<span class="keyword">double</span>&gt;::infinity()));
+                
+                    // Initialize distances with pipeline costs
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
+                        distances[i][i] = 0; <span class="comment">// Distance to itself is 0</span>
+                        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; pipeline : houses[i].pipelines) {
+                            <span class="keyword">int</span> neighborIndex = <span class="function">find_if</span>(houses.<span class="function">begin</span>(), houses.<span class="function">end</span>(), [&](<span class="keyword">const</span> <span class="variable">House</span>& h) {
+                                <span class="keyword">return</span> h.id == pipeline.<span class="variable">first</span>;
+                            }) - houses.<span class="function">begin</span>();
+                            distances[i][neighborIndex] = pipeline.<span class="variable">second</span>;
+                        }
+                    }
+                
+                    // Floyd-Warshall Algorithm
+                    <span class="keyword">for</span> (<span class="keyword">int</span> k = 0; k &lt; n; k++) {
+                        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
+                            <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n; j++) {
+                                <span class="keyword">if</span> (distances[i][k] &lt; <span class="variable">numeric_limits</span>&lt;<span class="keyword">double</span>&gt;::infinity() &&
+                                    distances[k][j] &lt; <span class="variable">numeric_limits</span>&lt;<span class="keyword">double</span>&gt;::infinity()) {
+                                    distances[i][j] = <span class="keyword">min</span>(distances[i][j], distances[i][k] + distances[k][j]);
+                                }
+                            }
+                        }
+                    }
+                
+                    <span class="keyword">return</span> distances;
+                }
+                
+                // Function to find the optimal pump location
+                <span class="keyword">void</span> <span class="function">findOptimalPumpPlacement</span>(<span class="keyword">const</span> <span class="keyword">vector</span>&lt;<span class="variable">House</span>&gt;&amp; houses) {
+                    <span class="keyword">vector</span>&lt;<span class="keyword">vector</span>&lt;<span class="keyword">double</span>&gt;&gt; distances = floydWarshall(houses);
+                
+                    <span class="keyword">int</span> n = houses.<span class="function">size</span>();
+                    <span class="keyword">vector</span>&lt;<span class="keyword">double</span>&gt; maxDistances(n, 0);
+                
+                    // Calculate the maximum distance from each house to any other house
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
+                        <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n; j++) {
+                            <span class="keyword">if</span> (distances[i][j] != <span class="variable">numeric_limits</span>&lt;<span class="keyword">double</span>&gt;::infinity()) {
+                                maxDistances[i] = <span class="keyword">max</span>(maxDistances[i], distances[i][j]);
+                            }
+                        }
+                    }
+                
+                    // Find the house with the minimum of the maximum distances (Graph Center)
+                    <span class="keyword">double</span> minMaxDistance = <span class="variable">numeric_limits</span>&lt;<span class="keyword">double</span>&gt;::infinity();
+                    <span class="keyword">int</span> optimalPumpIndex = -1;
+                    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
+                        <span class="keyword">if</span> (maxDistances[i] &lt; minMaxDistance) {
+                            minMaxDistance = maxDistances[i];
+                            optimalPumpIndex = i;
+                        }
+                    }
+                
+                    // Display the result
+                    <span class="keyword">if</span> (optimalPumpIndex != -1) {
+                        <span class="function">cout</span> &lt;&lt; "--- Optimal Pump Placement ---" &lt;&lt; <span class="function">endl</span>;
+                        <span class="function">cout</span> &lt;&lt; <span class="keyword">"The optimal location for placing the water pump is at House: "</span> 
+                             &lt;&lt; houses[optimalPumpIndex].id &lt;&lt; <span class="function">endl</span>;
+                        <span class="function">cout</span> &lt;&lt; <span class="keyword">"Maximum distance from any house to this pump: "</span> 
+                             &lt;&lt; minMaxDistance &lt;&lt; <span class="keyword">" units."</span> &lt;&lt; <span class="function">endl</span>;
+                    } <span class="keyword">else</span> {
+                        <span class="function">cout</span> &lt;&lt; <span class="keyword">"Error: Unable to determine the optimal pump placement."</span> &lt;&lt; <span class="function">endl</span>;
+                    }
+                }
+                      </code>
+                    </pre>
+                  </div>
+            </div>
+        </section>
+        <section class="output-section">
+            <h2>Water Pipeline Management System - Output</h2>
+            
+            <div class="code-block2">
+                <p>Welcome to the Water Pipeline Management System.</p>
+                <hr>
+                <p>This system helps us efficiently plan and manage water pipeline connections for the city's infrastructure.</p>
+                <p>To begin the process, we need to first assess the number of households that will require access to the water supply.</p>
+                <p>Please provide the total number of houses to be connected to the system.</p>
+                <p>6</p>
+                <p>Enter the name for house 1: housexf01</p>
+                <p>Enter the coordinates (x, y) for house 1: 34 56</p>
+                <p>Enter the name for house 2: 2</p>
+                <p>Enter the coordinates (x, y) for house 2: 12 78</p>
+                <p>Enter the name for house 3: 3</p>
+                <p>Enter the coordinates (x, y) for house 3: 45 39</p>
+                <p>Enter the name for house 4: 4</p>
+                <p>Enter the coordinates (x, y) for house 4: 66 90</p>
+                <p>Enter the name for house 5: 5</p>
+                <p>Enter the coordinates (x, y) for house 5: 100 123</p>
+                <p>Enter the name for house 6: 6</p>
+                <p>Enter the coordinates (x, y) for house 6: 51 89</p>
+        
+                <hr>
+        
+                <p>--- Menu ---</p>
+                <p>1. Display current network</p>
+                <p>2. Add a new house</p>
+                <p>3. Register a complaint</p>
+                <p>4. Display complaints</p>
+                <p>5. Calculate minimum spanning tree for water flow</p>
+                <p>6. Shortest path during maintenance</p>
+                <p>7. Find Optimal Pump Placement</p>
+                <p>8. Exit</p>
+                <p>Enter your choice: 1</p>
+        
+                <p>--- Current Network of Houses and Pipelines ---</p>
+                <p>housexf01 -> (2, Cost: 31.1127) (3, Cost: 20.2485) (4, Cost: 46.6905) (5, Cost: 94.0479) (6, Cost: 37.1214)</p>
+                <p>2 -> (housexf01, Cost: 31.1127) (3, Cost: 51.0882) (4, Cost: 55.3173) (5, Cost: 98.8383) (6, Cost: 40.5216)</p>
+                <p>3 -> (housexf01, Cost: 20.2485) (2, Cost: 51.0882) (4, Cost: 55.1543) (5, Cost: 100.404) (6, Cost: 50.3587)</p>
+                <p>4 -> (housexf01, Cost: 46.6905) (2, Cost: 55.3173) (3, Cost: 55.1543) (5, Cost: 47.3814) (6, Cost: 15.0333)</p>
+                <p>5 -> (housexf01, Cost: 94.0479) (2, Cost: 98.8383) (3, Cost: 100.404) (4, Cost: 47.3814) (6, Cost: 59.6406)</p>
+                <p>6 -> (housexf01, Cost: 37.1214) (2, Cost: 40.5216) (3, Cost: 50.3587) (4, Cost: 15.0333) (5, Cost: 59.6406)</p>
+        
+                <hr>
+        
+                <p>--- Menu ---</p>
+                <p>1. Display current network</p>
+                <p>2. Add a new house</p>
+                <p>3. Register a complaint</p>
+                <p>4. Display complaints</p>
+                <p>5. Calculate minimum spanning tree for water flow</p>
+                <p>6. Shortest path during maintenance</p>
+                <p>7. Find Optimal Pump Placement</p>
+                <p>8. Exit</p>
+                <p>Enter your choice: 6</p>
+                <p>Enter the starting house ID: 2</p>
+                <p>Enter the ending house ID: 6</p>
+                <p>Shortest path from 2 to 6 is 40.5216 units.</p>
+                <p>Path: 2 -> 6</p>
+        
+                <hr>
+        
+                <p>--- Menu ---</p>
+                <p>1. Display current network</p>
+                <p>2. Add a new house</p>
+                <p>3. Register a complaint</p>
+                <p>4. Display complaints</p>
+                <p>5. Calculate minimum spanning tree for water flow</p>
+                <p>6. Shortest path during maintenance</p>
+                <p>7. Find Optimal Pump Placement</p>
+                <p>8. Exit</p>
+                <p>Enter your choice: 7</p>
+                <p>--- Optimal Pump Placement ---</p>
+                <p>The optimal location for placing the water pump is at House: 4</p>
+                <p>Maximum distance from any house to this pump: 55.3173 units.</p>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+    </footer>
+</body>
+</html>

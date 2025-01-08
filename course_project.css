@@ -1,0 +1,369 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+header {
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 10px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #00796b;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00796b;
+    left: 0;
+    bottom: -3px;
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f0f8ff;
+    color: #003366;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Project Overview Section */
+.project-overview {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    text-align: center;
+    animation: slideIn 1.2s ease-in-out;
+}
+
+.project-overview h2 {
+    font-size: 28px;
+    color: #00509e;
+    margin-bottom: 20px;
+}
+
+.project-intro {
+    display: flex;
+    justify-content: space-between; /* Ensure space between the map and the details */
+    gap: 30px;
+    flex-wrap: wrap; /* Ensures layout wraps properly on smaller screens */
+    align-items: center;
+}
+
+.city-map {
+    flex: 1;
+    min-width: 300px; /* Ensures the map doesn't get too small */
+    max-width: 700px; /* Keeps the map from getting too large */
+}
+
+.city-map img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-details {
+    flex: 1;
+    min-width: 300px; /* Ensures the details don't get too small */
+    text-align: left;
+    max-width: 500px; /* Prevents the text from becoming too wide */
+}
+
+.project-details h3 {
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.project-details p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #444444;
+    line-height: 1.8;
+}
+
+.project-details ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+    .project-intro {
+        flex-direction: column; /* Stacks the map and details vertically */
+        gap: 20px;
+    }
+
+    .city-map {
+        max-width: 100%; /* Makes the map full width on smaller screens */
+    }
+
+    .project-details {
+        max-width: 100%; /* Adjusts the details section to full width */
+    }
+}
+
+
+/* Individual Contribution Section */
+.individual-contribution {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1200px;
+    animation: fadeInUp 1.3s ease-in-out;
+}
+
+.individual-contribution h2 {
+    font-size: 28px;
+    color: #00509e;
+    margin-bottom: 20px;
+}
+
+.contribution-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contribution-box {
+    background-color: #f2f4f8;
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.contribution-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contribution-box h3 {
+    font-size: 22px;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #003366;
+    color: #ffffff;
+    margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Code Block Style */
+.code-block {
+    background-color: #1e1e1e; /* VS Code-like dark background */
+    color: #dcdcdc; /* Default text color */
+    font-family: 'Courier New', monospace; /* Monospace font for coding */
+    font-size: 0.95rem;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    overflow-x: auto; /* Horizontal scroll for long lines */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Syntax Highlighting */
+.code-block .keyword {
+    color: #569cd6; /* Keywords (e.g., for, void, int) */
+}
+
+.code-block .function {
+    color: #dcdcaa; /* Function names */
+}
+
+.code-block .variable {
+    color: #9cdcfe; /* Variables */
+}
+
+.code-block .number {
+    color: #b5cea8; /* Numbers */
+}
+
+.code-block .comment {
+    color: #6a9955; /* Comments */
+}
+
+.code-block .string {
+    color: #ce9178; /* Strings */
+}
+/* VS Code-like Style for Output */
+.output-section {
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e; /* Dark background */
+    color: #dcdcdc; /* Light text */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    white-space: pre-wrap; /* Keep spaces and line breaks */
+    overflow-wrap: break-word; /* Allow long text to wrap */
+    max-width: 90%; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for the individual code block */
+/* VS Code-like Style for Output */
+.output-section {
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e; /* Dark background */
+    color: #dcdcdc; /* Light text */
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    white-space: pre-wrap; /* Keep spaces and line breaks */
+    overflow-wrap: break-word; /* Allow long text to wrap */
+    max-width: 90%; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for the individual code block */
+/* VS Code-like Style for Output */
+.output-section {
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e; /* Dark background */
+    color: #dcdcdc; /* Light text */
+    padding: 10px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    white-space: pre-wrap; /* Keep spaces and line breaks */
+    overflow-wrap: break-word; /* Allow long text to wrap */
+    max-width: 95%; /* Increased width to 95% */
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold; /* Make the text bolder */
+}
+
+/* Styling for the individual code block */
+.code-block2 {
+    background-color: #2d2d2d; /* Slightly darker background for code block */
+    color: #dcdcdc;
+    height:1000px;
+    padding: 8px; /* Reduced padding */
+    border-radius: 8px;
+    margin-bottom: 1px; /* Reduced bottom margin */
+    font-size: 1.1rem; /* Slightly smaller font size */
+    line-height: 1.1; /* Reduced line height further */
+    white-space: pre-wrap;
+    overflow-x: auto;
+    overflow-y: scroll;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 95%; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold; /* Make the text bolder */
+}
+
+/* Remove the large gaps between lines */
+p {
+    margin: 0 0; /* Further reduced margin */
+}
+
+/* Horizontal rule between sections */
+hr {
+    border: 1px solid #444;
+    margin: 10px 0; /* Reduced margin */
+}
+
+/* Adjust width of the section */
+.output-section {
+    max-width: 1100px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
